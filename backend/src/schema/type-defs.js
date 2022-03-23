@@ -25,8 +25,8 @@ const typeDefs = gql`
     insuranceType: [InsuranceType!]!
     status: [PolicyStatus!]!
     policyNumber: String!
-    startDate: Date!
-    endDate: Date!
+    startDate: Date
+    endDate: Date
     createdAt: Date!
   }
 
