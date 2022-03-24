@@ -6,7 +6,7 @@ const typeDefs = gql`
 
   type Query {
     allPolicies: [Policy!]
-    allCustomers: [Customer!]
+    allCustomers: [Customer]
     policy(policyNumber: String!): Policy
     customer(id: ID!): Customer
   }
@@ -16,7 +16,6 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     dateOfBirth: Date
-    policies: [Policy!]!
   }
 
   type Policy {
