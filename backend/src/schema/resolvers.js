@@ -33,11 +33,11 @@ const getCustomers = () => {
 }
 
 const getPolicyById = ({ Id }) => {
-    return Promise.resolve(policy.find(p => p.policyNumber === Id));
+    return Promise.resolve(policy.findAll(p => p.policyNumber === Id));
 }
 
 const getCustomerById = ({ customerId }) => {
-    return Promise.resolve(customer.find(c => c.id === customerId));
+    return Promise.resolve(customer.findAll(c => c.id === customerId));
   }
 
 module.exports = {

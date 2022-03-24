@@ -1,4 +1,5 @@
 const { ApolloServer } = require("apollo-server");
+const { PrismaClient } = require('@prisma/client')
 const typeDefs = require("./schema/type-defs");
 const resolvers = require("./schema/resolvers");
 
