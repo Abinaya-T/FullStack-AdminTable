@@ -5,8 +5,8 @@ const typeDefs = gql`
   scalar Date
 
   type Query {
-    allPolicies: [Policy!]
-    allCustomers: [Customer]
+    getPolicies(filter: String): [Policy!]!
+    allCustomers: [Customer]!
     policy(policyNumber: String!): Policy
     customer(id: ID!): Customer
   }
@@ -21,8 +21,8 @@ const typeDefs = gql`
   type Policy {
     customer: Customer!
     provider: String
-    insuranceType: [InsuranceType!]!
-    status: [PolicyStatus!]!
+    insuranceType: String
+    status: String
     policyNumber: String!
     startDate: Date
     endDate: Date

@@ -11,8 +11,21 @@ datasource db {
 }
 
 model Customer {
-  id        Int @id @default(autoincrement())
-  firstName String
-  lastName  String
+  id          Int      @id @default(autoincrement())
+  firstName   String
+  lastName    String
   dateOfBirth DateTime
+  Policy      Policy[]
+}
+
+model Policy {
+  customer      Customer @relation(fields: [CustomerId], references: [id])
+  CustomerId    Int
+  policyNumber  String   @unique
+  provider      String
+  insuranceType String
+  status        String
+  startDate     DateTime
+  endDate       DateTime
+  createdAt     DateTime @default(now())
 }

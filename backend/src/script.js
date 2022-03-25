@@ -9,8 +9,24 @@ async function main() {
             dateOfBirth: new Date("1986-05-24")
         },
     })
-  const allCustomers = await prisma.customer.findMany()
-  console.log(allCustomers)
+    const newPolicy = await prisma.policy.create({
+      data:{
+        customer: {
+          connect: {id: 1},
+        },
+        policyNumber: "100",
+        provider: "Bajaj",
+        insuranceType: "Liability",
+        status: "Active",
+        startDate: new Date("2022-02-21"),
+        endDate: new Date("2024-02-21"),
+        createdAt: new Date()
+      }
+    })
+
+  const allPolicies = await prisma.policy.findMany()
+
+  console.log(allPolicies)
 }
 
 main()
