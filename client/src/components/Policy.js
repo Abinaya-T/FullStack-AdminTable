@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Link = (props) => {
+const Policy = (props) => {
   const { policy } = props;
   return (
     <div>
@@ -11,4 +11,4 @@ const Link = (props) => {
   );
 };
 
-export default Link;
+export default Policy;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './Policy';
+import Policy from './Policy';
 import { useQuery, gql } from '@apollo/client';
 
 const POLICIES_QUERY = gql`
@@ -19,7 +19,7 @@ const LinkList = () => {
           {data && (
             <>
               {data.getPolicies.map((policy) => (
-                <Link key={policy.policyNumber} policy={policy} />
+                <Policy key={policy.policyNumber} policy={policy} />
               ))}
             </>
           )}
