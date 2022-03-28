@@ -1,29 +1,75 @@
 import React from 'react';
-import Policy from './Policy';
 import { useQuery, gql } from '@apollo/client';
+import Table from './Table';
 
 const POLICIES_QUERY = gql`
 {
     getPolicies{
         policyNumber
-        status
-        insuranceType 
+        customer{firstName}
+        provider
+        insuranceType
+        status 
+        startDate
+        endDate
+        createdAt
     }
 }`
 
+const columns = [
+  {
+    Header: "PolicyNumber",
+    accessor: "policyNumber",
+  },
+  {
+    Header: "CustomerId",
+    accessor: "customer",
+  },
+  {
+    Header: "Provider",
+    accessor: "provider",
+  },
+  {
+    Header: "Insurance Type",
+    accessor: "insuranceType",
+  },
+  {
+    Header: "Status",
+    accessor: "status",
+  },
+  {
+    Header: "Start Date",
+    accessor: "startDate",
+  },
+  {
+    Header: "End Date",
+    accessor: "endDate",
+  },
+  {
+    Header: "Created Date",
+    accessor: "createdAt",
+  },
+]
+
 const LinkList = () => {
     const { data } = useQuery(POLICIES_QUERY);
-    console.log(data)
+    if(data){
+      let arr = data.getPolicies
+      var policies = arr.map(obj => {
+          return {...obj, startDate: new Date(obj.startDate).toLocaleDateString(), endDate: new Date(obj.endDate).toLocaleDateString(), createdAt: new Date(obj.createdAt).toLocaleString() }; 
+      });
+      console.log(policies)
+    }
+    
     return (
         <div>
           {data && (
             <>
-              {data.getPolicies.map((policy) => (
-                <Policy key={policy.policyNumber} policy={policy} />
-              ))}
+              <Table columns={columns} data={policies} />
             </>
           )}
         </div>
       );
     };
+
 export default LinkList;

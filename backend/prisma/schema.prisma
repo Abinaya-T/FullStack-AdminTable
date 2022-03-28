@@ -19,8 +19,8 @@ model Customer {
 }
 
 model Policy {
-  customer      Customer @relation(fields: [CustomerId], references: [id])
-  CustomerId    Int
+  customer      Customer @relation(fields: [customerId], references: [id])
+  customerId    Int
   policyNumber  String   @unique
   provider      String
   insuranceType String
