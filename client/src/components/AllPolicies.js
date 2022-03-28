@@ -1,12 +1,16 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import Table from './Table';
+import Table , {SelectColumnFilter} from './Table';
 
 const POLICIES_QUERY = gql`
 {
     getPolicies{
         policyNumber
-        customer{firstName}
+        customer{
+        id
+        firstName
+        lastName
+        }
         provider
         insuranceType
         status 
@@ -23,7 +27,7 @@ const columns = [
   },
   {
     Header: "CustomerId",
-    accessor: "customer",
+    accessor: "customer.id",
   },
   {
     Header: "Provider",
@@ -32,10 +36,14 @@ const columns = [
   {
     Header: "Insurance Type",
     accessor: "insuranceType",
+    Filter: SelectColumnFilter,
+    filter: 'includes',
   },
   {
     Header: "Status",
     accessor: "status",
+    Filter: SelectColumnFilter,
+    filter: 'includes',
   },
   {
     Header: "Start Date",
@@ -49,6 +57,7 @@ const columns = [
     Header: "Created Date",
     accessor: "createdAt",
   },
+  
 ]
 
 const LinkList = () => {
