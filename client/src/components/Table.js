@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, useSortBy } from "react-table";
+import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, useSortBy, usePagination } from "react-table";
 import { classNames } from "../utils/utils";
 
 function GlobalFilter({
@@ -46,25 +46,24 @@ export function SelectColumnFilter({
   // Render a multi-select box
   return (
     <label className="flex gap-x-2 items-baseline">
-      <span className="text-gray-700">{render("Header")}: </span>
-    <select
-      className="mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-      name={id}
-      id={id}
-      value={filterValue}
-      onChange={e => {
-        setFilter(e.target.value || undefined)
-      }}
-    >
-      <option value="">All</option>
-      {options.map((option, i) => (
-        <option key={i} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
-  </label>
-)
+      <select
+        className="mt-1 px-2 py-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        name={id}
+        id={id}
+        value={filterValue}
+        onChange={e => {
+          setFilter(e.target.value || undefined)
+        }}
+      >
+        <option value="">All</option>
+        {options.map((option, i) => (
+          <option key={i} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </label>
+  )
 }
 
 export function StatusPill({ value }) {
@@ -96,6 +95,15 @@ function Table({ columns, data }) {
     state,
     preGlobalFilteredRows,
     setGlobalFilter,
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
   } = useTable(
     {
       columns,
@@ -104,6 +112,7 @@ function Table({ columns, data }) {
     useFilters,
     useGlobalFilter,
     useSortBy,
+    usePagination,
   );
 
   // Render the UI for your table
@@ -128,13 +137,13 @@ function Table({ columns, data }) {
         <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-10">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-6">
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-              <table {...getTableProps()} className="min-w-full divide-y divide-gray-200">
+              <table {...getTableProps()} className="min-w-full divide-y divide-gray-200 ">
                 <thead className="bg-gray-50">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map((column) => (
                         <th scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"{...column.getHeaderProps(column.getSortByToggleProps())}>{column.render("Header")}
+                          className="px-6 py-3 text-left text-xs font-bold text-violet-500 uppercase tracking-wider"{...column.getHeaderProps(column.getSortByToggleProps())}>{column.render("Header")}
                           <span>
                             {column.isSorted
                               ? column.isSortedDesc
@@ -165,6 +174,39 @@ function Table({ columns, data }) {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="pagination">
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'<<'}
+        </button>{' '}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {'<'}
+        </button>{' '}
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {'>'}
+        </button>{' '}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'>>'}
+        </button>{' '}
+        <span>
+          Page{' '}
+          <strong>
+            {state.pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
+        <select
+          value={state.pageSize}
+          onChange={e => {
+            setPageSize(Number(e.target.value))
+          }}
+        >
+          {[5, 10, 20].map(pageSize => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
       </div>
     </>
   );
