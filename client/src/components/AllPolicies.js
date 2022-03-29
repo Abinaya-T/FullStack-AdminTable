@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import Table , {SelectColumnFilter} from './Table';
+import Table , {SelectColumnFilter, StatusPill} from './Table';
 
 const POLICIES_QUERY = gql`
 {
@@ -44,6 +44,7 @@ const columns = [
     accessor: "status",
     Filter: SelectColumnFilter,
     filter: 'includes',
+    Cell: StatusPill,
   },
   {
     Header: "Start Date",
@@ -73,9 +74,16 @@ const LinkList = () => {
     return (
         <div>
           {data && (
-            <>
-              <Table columns={columns} data={policies} />
-            </>
+            <div className="min-h-screen bg-gray-100 text-gray-900">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <div className="">
+          <h1 className="text-xl font-semibold">All Policies Table</h1>
+        </div>
+        <div className="mt-4">
+          <Table columns={columns} data={policies} />
+        </div>
+      </main>
+    </div>
           )}
         </div>
       );

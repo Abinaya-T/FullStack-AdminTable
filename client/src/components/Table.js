@@ -1,5 +1,6 @@
 import React from "react";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, useSortBy } from "react-table";
+import { classNames } from "../utils/utils";
 
 function GlobalFilter({
   preGlobalFilteredRows,
@@ -13,22 +14,24 @@ function GlobalFilter({
   }, 200);
 
   return (
-    <span>
-      Search:{" "}
+    <label className="flex gap-x-2 items-baseline">
+      <span className="text-gray-700">Search: </span>
       <input
+        type="text"
+        class="mt-1 block w-200 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         value={value || ""}
-        onChange={(e) => {
+        onChange={e => {
           setValue(e.target.value);
           onChange(e.target.value);
         }}
         placeholder={`${count} records...`}
       />
-    </span>
-  );
+    </label>
+  )
 }
 
 export function SelectColumnFilter({
-  column: { filterValue, setFilter, preFilteredRows, id },
+  column: { filterValue, setFilter, preFilteredRows, id, render },
 }) {
   // Calculate the options for filtering
   // using the preFilteredRows
@@ -42,12 +45,15 @@ export function SelectColumnFilter({
 
   // Render a multi-select box
   return (
+    <label className="flex gap-x-2 items-baseline">
+      <span className="text-gray-700">{render("Header")}: </span>
     <select
+      className="mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
       name={id}
       id={id}
       value={filterValue}
-      onChange={(e) => {
-        setFilter(e.target.value || undefined);
+      onChange={e => {
+        setFilter(e.target.value || undefined)
       }}
     >
       <option value="">All</option>
@@ -57,9 +63,27 @@ export function SelectColumnFilter({
         </option>
       ))}
     </select>
-  );
+  </label>
+)
 }
 
+export function StatusPill({ value }) {
+  const status = value ? value.toLowerCase() : "unknown";
+
+  return (
+    <span
+      className={classNames(
+        "px-3 py-1 uppercase leading-wide font-bold text-xs rounded-full shadow-sm",
+        status.startsWith("active") ? "bg-green-200 text-green-700" : null,
+        status.startsWith("pending") ? "bg-yellow-200 text-yellow-700" : null,
+        status.startsWith("cancelled") ? "bg-red-200 text-red-700" : null,
+        status.startsWith("droppedout") ? "bg-orange-200 text-orange-700" : null
+      )}
+    >
+      {status}
+    </span>
+  );
+}
 
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
@@ -100,39 +124,48 @@ function Table({ columns, data }) {
           ) : null
         )
       )}
-      <table {...getTableProps()} border="1">
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render("Header")}
-                <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? ' ▼'
-                        : ' ▲'
-                      : ''}
-                  </span>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="mt-6 flex flex-col">
+        <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-10">
+          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-6">
+            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+              <table {...getTableProps()} className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  {headerGroups.map((headerGroup) => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                      {headerGroup.headers.map((column) => (
+                        <th scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"{...column.getHeaderProps(column.getSortByToggleProps())}>{column.render("Header")}
+                          <span>
+                            {column.isSorted
+                              ? column.isSortedDesc
+                                ? ' ▼'
+                                : ' ▲'
+                              : ''}
+                          </span>
+                        </th>
+                      ))}
+                    </tr>
+                  ))}
+                </thead>
+                <tbody className="bg-gray-50 min-w-full divide-y divide-gray-150" {...getTableBodyProps()}>
+                  {rows.map((row, i) => {
+                    prepareRow(row);
+                    return (
+                      <tr {...row.getRowProps()}>
+                        {row.cells.map((cell) => {
+                          return (
+                            <td className="px-4 py-3 leading-5 "{...cell.getCellProps()}>{cell.render("Cell")}</td>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
