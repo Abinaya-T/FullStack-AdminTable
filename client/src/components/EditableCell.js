@@ -1,18 +1,14 @@
 import React from "react"
 import { useMutation, gql } from '@apollo/client';
 
-const UPDATE_CELL_MUTATION = gql`
-  mutation PostMutation(
-    $description: String!
-    $url: String!
-  ) {
-    post(description: $description, url: $url) {
-      id
-      createdAt
-      url
-      description
-    }
+const UPDATE_POLICY = gql`
+mutation UpdatePolicy($policyNumber: String, $insuranceType: String, $provider: String) {
+  updatePolicy(PolicyNumber: $policyNumber, InsuranceType: $insuranceType, Provider: $provider) {
+    policyNumber
+    insuranceType
+    provider
   }
+}
 `;
 
 const EditableCell = ({

@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 import Table, { SelectColumnFilter, StatusPill } from './Table';
 import EditableCell from './EditableCell';
 
-const POLICIES_QUERY = gql`
+export const POLICIES_QUERY = gql`
 {
     getPolicies{
         policyNumber
@@ -68,8 +68,12 @@ const columns = [
 
 ]
 
-const LinkList = () => {
-  const { data } = useQuery(POLICIES_QUERY);
+const AllPolicies = () => {
+  const { data, error, loading } = useQuery(POLICIES_QUERY);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) return <p>Error! {error.message}</p>;
   if (data) {
     let arr = data.getPolicies
     var policies = arr.map(obj => {
@@ -82,7 +86,7 @@ const LinkList = () => {
       {data && (
         <div className="min-h-screen bg-gray-100 text-gray-900">
           <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-            <div className="">
+            <div className="policy-table">
               <h1 className="text-2xl text-violet-500 font-bold">All Policies Table</h1>
             </div>
             <div className="mt-4">
@@ -95,4 +99,4 @@ const LinkList = () => {
   );
 };
 
-export default LinkList;
+export default AllPolicies;
