@@ -31,6 +31,16 @@ const Policy =  {
   }
 }
 
+const updatePolicy = async(parent, args, context) => {
+  console.log(args.PolicyNumber)
+  return context.prisma.policy.update({
+    where: {policyNumber: args.PolicyNumber},
+    data:{
+      insuranceType: args.InsuranceType,
+      provider: args.Provider
+    }
+  })
+}
 
 const resolvers = {
   Date: GraphQLDateTime,
@@ -38,6 +48,9 @@ const resolvers = {
     getPolicies
   },
   Policy,
+  Mutation: {
+    updatePolicy
+  },
 }
 
 

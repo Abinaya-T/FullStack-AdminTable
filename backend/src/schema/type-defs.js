@@ -9,6 +9,10 @@ const typeDefs = gql`
     allCustomers: [Customer]!
   }
 
+  type Mutation {
+    updatePolicy(PolicyNumber: String, Provider: String, InsuranceType: String): Policy
+  }
+
   type Customer {
     id: ID
     firstName: String
