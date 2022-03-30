@@ -4,18 +4,18 @@ In this code challenge you'll need to create a simple admin panel from scratch. 
 
 The [frontend](./frontend) part would communicate with the [backend](./backend) through a GraphQL API. You need to implement both.
 
-## Tasks
+## Tasks to Be Completed
 
-1. On the [backend](./backend), change the GraphQL schema to reflect the [Data structure](#Data-structure)
-2. On the [frontend](./frontend), fetch the data returned by the GraphQL endpoint with the help of the [Apollo client](https://www.apollographql.com)
-3. On the [frontend](./frontend), display all the data returned by the endpoint in a table with the help of [tailwindcss](https://tailwindcss.com)
-   - At least several fields should be editable in place
-   - The table should have pagination and sorting on each of the columns
-   - (Bonus) Add a text search input
-   - (Bonus) Let the admin filter policies by insurance type or other fields
-4. (Bonus) Package the app with Docker
-5. (Bonus) Authenticate admins using login/password
-6. (Bonus) Create more screens (e.g. customer profile, policy page…)
+- [x] On the [backend](./backend), change the GraphQL schema to reflect the [Data structure](#Data-structure)
+- [x] On the [frontend](./frontend), fetch the data returned by the GraphQL endpoint with the help of the [Apollo client](https://www.apollographql.com)
+- [x] On the [frontend](./frontend), display all the data returned by the endpoint in a table with the help of [tailwindcss](https://tailwindcss.com)
+   - [x] At least several fields should be editable in place
+   - [x] The table should have pagination and sorting on each of the columns
+   - [x] (Bonus) Add a text search input
+   - [x] (Bonus) Let the admin filter policies by insurance type or other fields
+- [ ] (Bonus) Package the app with Docker
+- [ ] (Bonus) Authenticate admins using login/password
+- [ ] (Bonus) Create more screens (e.g. customer profile, policy page…)
 
 
 ### Policy
