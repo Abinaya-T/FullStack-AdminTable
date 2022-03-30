@@ -1,6 +1,8 @@
 import React from "react";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, useSortBy, usePagination } from "react-table";
-import { classNames } from "../utils/utils";
+import { classNames } from "../utils/Utils";
+import { Button, PageButton } from '../utils/Button'
+import { ChevronLeftIcon, ChevronRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from "@heroicons/react/solid";
 
 function GlobalFilter({
   preGlobalFilteredRows,
@@ -18,7 +20,7 @@ function GlobalFilter({
       <span className="text-gray-700">Search: </span>
       <input
         type="text"
-        class="mt-1 block w-200 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        class="mt-1 block w-200 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         value={value || ""}
         onChange={e => {
           setValue(e.target.value);
@@ -90,7 +92,6 @@ function Table({ columns, data }) {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
     state,
     preGlobalFilteredRows,
@@ -157,13 +158,13 @@ function Table({ columns, data }) {
                   ))}
                 </thead>
                 <tbody className="bg-gray-50 min-w-full divide-y divide-gray-150" {...getTableBodyProps()}>
-                  {rows.map((row, i) => {
+                  {page.map((row, i) => {
                     prepareRow(row);
                     return (
                       <tr {...row.getRowProps()}>
                         {row.cells.map((cell) => {
                           return (
-                            <td className="px-4 py-3 leading-5 "{...cell.getCellProps()}>{cell.render("Cell")}</td>
+                            <td className="pl-3 py-3"{...cell.getCellProps()}>{cell.render("Cell")}</td>
                           );
                         })}
                       </tr>
@@ -176,37 +177,65 @@ function Table({ columns, data }) {
         </div>
       </div>
 
-      <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'}
-        </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
-        <span>
-          Page{' '}
-          <strong>
-            {state.pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-        <select
-          value={state.pageSize}
-          onChange={e => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[5, 10, 20].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
+      <div className="py-5 pb-10 flex items-center justify-between">
+        <div className="flex-1 flex justify-between sm:hidden">
+          <Button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</Button>
+          <Button onClick={() => nextPage()} disabled={!canNextPage}>Next</Button>
+        </div>
+        <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+          <div className="flex gap-x-2">
+            <span className="mt-4 text-sm text-gray-700">
+              Page <span className="font-medium">{state.pageIndex + 1}</span> of <span className="font-medium">{pageOptions.length}</span>
+            </span>
+            <select
+              className="mt-2 py-1 rounded-md shadow-sm border-gray-300"
+              value={state.pageSize}
+              onChange={e => {
+                setPageSize(Number(e.target.value))
+              }}
+            >
+              {[5, 10, 20].map(pageSize => (
+                <option key={pageSize} value={pageSize}>
+                  Show {pageSize}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+              <PageButton
+                className="rounded-l-md"
+                onClick={() => gotoPage(0)}
+                disabled={!canPreviousPage}
+              >
+                <span className="sr-only">First</span>
+                <ChevronDoubleLeftIcon className="h-5 w-5" aria-hidden="true" />
+              </PageButton>
+              <PageButton
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                <span className="sr-only">Previous</span>
+                <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
+              </PageButton>
+              <PageButton
+                onClick={() => nextPage()}
+                disabled={!canNextPage
+                }>
+                <span className="sr-only">Next</span>
+                <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+              </PageButton>
+              <PageButton
+                className="rounded-r-md"
+                onClick={() => gotoPage(pageCount - 1)}
+                disabled={!canNextPage}
+              >
+                <span className="sr-only">Last</span>
+                <ChevronDoubleRightIcon className="h-5 w-5" aria-hidden="true" />
+              </PageButton>
+            </nav>
+          </div>
+        </div>
       </div>
     </>
   );
