@@ -4,7 +4,7 @@ In this code challenge you'll need to create a simple admin panel from scratch. 
 
 The [frontend](./frontend) part would communicate with the [backend](./backend) through a GraphQL API. You need to implement both.
 
-## Tasks to Be Completed
+## Tasks - Checklist
 
 - [x] On the [backend](./backend), change the GraphQL schema to reflect the [Data structure](#Data-structure)
 - [x] On the [frontend](./frontend), fetch the data returned by the GraphQL endpoint with the help of the [Apollo client](https://www.apollographql.com)
@@ -17,6 +17,29 @@ The [frontend](./frontend) part would communicate with the [backend](./backend) 
 - [ ] (Bonus) Authenticate admins using login/password
 - [ ] (Bonus) Create more screens (e.g. customer profile, policy page…)
 
+## How to setup
+
+#### Run the app in dev mode
+
+```sh
+npm run start
+```
+
+#### To test the application
+
+```sh
+npm test
+```
+
+## Built with
+
+This project is built using
+
+- `Apollo GraphQL server`
+- `React.js` for components, styled using `TailwindCSS`
+- `Apollo Client` 
+- `Prisma` as ORM and `SQLite` to persist data. 
+- For Testing - `Apollo Sandbox`, IDE for testing GraphQL endpoints and testing libs such as `jest`, `react-testing-libraries`, `apollo/client/testing`
 
 ### Policy
 
@@ -55,6 +78,7 @@ PolicyStatus can be of `Active`, `Pending`, `Cancelled` and `Dropped out`
 ## Areas of Improvement
 
 - Unit & Integration testing
+- Use Typescript instead of Javascript
 - User Authentication
 - Package the app using Docker
 
