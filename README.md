@@ -49,12 +49,12 @@ PolicyStatus can be of `Active`, `Pending`, `Cancelled` and `Dropped out`
 
 ## Known Bugs
 
-testing is not yet completed.
-Update mutation is not implemented in Client side.
+- testing is not yet completed.
+- Update mutation is not implemented in Client side.
 
 ## Areas of Improvement
 
-Unit & Integration testing
-User Authentication
-Package the app using Docker
+- Unit & Integration testing
+- User Authentication
+- Package the app using Docker
 
