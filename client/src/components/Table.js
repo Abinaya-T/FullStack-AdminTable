@@ -164,7 +164,7 @@ function Table({ columns, data }) {
                       <tr {...row.getRowProps()}>
                         {row.cells.map((cell) => {
                           return (
-                            <td className="pl-3 py-3"{...cell.getCellProps()}>{cell.render("Cell")}</td>
+                            <td className="pl-3 py-3 text-left"{...cell.getCellProps()}>{cell.render("Cell")}</td>
                           );
                         })}
                       </tr>

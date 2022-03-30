@@ -23,12 +23,16 @@ const POLICIES_QUERY = gql`
 
 const columns = [
   {
-    Header: "PolicyNumber",
+    Header: "Policy.No",
     accessor: "policyNumber",
   },
   {
-    Header: "CustomerId",
+    Header: "Cus.Id",
     accessor: "customer.id",
+  },
+  {
+    Header: "Name",
+    accessor: d => `${d.customer.firstName} ${d.customer.lastName}`
   },
   {
     Header: "Provider",
@@ -69,7 +73,7 @@ const LinkList = () => {
   if (data) {
     let arr = data.getPolicies
     var policies = arr.map(obj => {
-      return { ...obj, startDate: new Date(obj.startDate).toLocaleDateString(), endDate: new Date(obj.endDate).toLocaleDateString(), createdAt: new Date(obj.createdAt).toLocaleString() };
+      return { ...obj, startDate: new Date(obj.startDate).toLocaleDateString(), endDate: new Date(obj.endDate).toLocaleDateString(), createdAt: new Date(obj.createdAt).toLocaleDateString() };
     });
   }
 
