@@ -4,18 +4,6 @@ In this code challenge you'll need to create a simple admin panel from scratch. 
 
 The [frontend](./frontend) part would communicate with the [backend](./backend) through a GraphQL API. You need to implement both.
 
-We've generated some boilerplate for you to get started.
-
-## What we'll be looking at
-
-- How you write idiomatic code.
-- How you deal with UI/UX.
-- How you navigate the requirements.
-- How you test & write testable code.
-- How you package the code.
-- How you deal with the security concerns.
-- How you communicate with your fellow programmers.
-
 ## Tasks
 
 1. On the [backend](./backend), change the GraphQL schema to reflect the [Data structure](#Data-structure)
@@ -29,10 +17,6 @@ We've generated some boilerplate for you to get started.
 5. (Bonus) Authenticate admins using login/password
 6. (Bonus) Create more screens (e.g. customer profile, policy page…)
 
-## Data structure
-
-To make it all work, you have to define a [GraphQL schema first](https://www.apollographql.com/docs/apollo-server/schema/schema/). No need to back it with a real database, however this would make sense to demonstrate the "edit" function.
-Each policy should have at least the following fields:
 
 ### Policy
 
@@ -62,3 +46,15 @@ InsuranceType can be of `Liability`, `Household`, `Health`
 ### PolicyStatus
 
 PolicyStatus can be of `Active`, `Pending`, `Cancelled` and `Dropped out`
+
+## Known Bugs
+
+testing is not yet completed.
+Update mutation is not implemented in Client side.
+
+## Areas of Improvement
+
+Unit & Integration testing
+User Authentication
+Package the app using Docker
+
