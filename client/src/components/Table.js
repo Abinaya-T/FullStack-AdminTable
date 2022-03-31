@@ -1,6 +1,6 @@
 import React from "react";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, useSortBy, usePagination } from "react-table";
-import { classNames } from "../utils/Utils";
+import { classNames } from "../utils/utils";
 import { Button, PageButton } from '../utils/Button'
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from "@heroicons/react/solid";
 
