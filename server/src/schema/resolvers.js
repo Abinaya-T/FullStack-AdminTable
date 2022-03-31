@@ -26,7 +26,7 @@ const getPolicies = async (parent, args, context) => {
 const Policy =  {
   customer: (parent, args, context) => {
     return context.prisma.customer.findUnique({
-      where: {id: parent.CustomerId},
+      where: {id: parent.customerId},
     })
   }
 }
