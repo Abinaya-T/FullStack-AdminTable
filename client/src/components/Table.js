@@ -86,7 +86,7 @@ export function StatusPill({ value }) {
   );
 }
 
-function Table({ columns, data }) {
+function Table({ columns, data, updateMyData }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -109,6 +109,7 @@ function Table({ columns, data }) {
     {
       columns,
       data,
+      updateMyData
     },
     useFilters,
     useGlobalFilter,

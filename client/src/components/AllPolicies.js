@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 import Table, { SelectColumnFilter, StatusPill } from './Table';
 import EditableCell from './EditableCell';
 
@@ -20,6 +20,16 @@ export const POLICIES_QUERY = gql`
         createdAt
     }
 }`
+
+export const UPDATE_POLICY = gql`
+mutation UpdatePolicy($policyNumber: String, $insuranceType: String, $provider: String) {
+  updatePolicy(PolicyNumber: $policyNumber, InsuranceType: $insuranceType, Provider: $provider) {
+    policyNumber
+    insuranceType
+    provider
+  }
+}
+`;
 
 const columns = [
   {
@@ -68,8 +78,12 @@ const columns = [
 
 ]
 
+
 const AllPolicies = () => {
+
   const { data, error, loading } = useQuery(POLICIES_QUERY);
+  const [updatePolicy] = useMutation(UPDATE_POLICY)
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -81,6 +95,17 @@ const AllPolicies = () => {
     });
   }
 
+  const updateMyData = (rowIndex, columnId, value) => {
+    const policyNum = policies[rowIndex].policyNumber
+    if(columnId === 'insuranceType'){
+    updatePolicy({ variables: { policyNumber: policyNum, insuranceType: value} })
+    }
+    if(columnId === 'provider'){
+      updatePolicy({ variables: { policyNumber: policyNum, provider: value} })
+    }
+  };
+
+
   return (
     <div>
       {data && (
@@ -90,7 +115,7 @@ const AllPolicies = () => {
               <h1 className="text-2xl text-violet-500 font-bold">All Policies Table</h1>
             </div>
             <div className="mt-4">
-              <Table columns={columns} data={policies} />
+              <Table columns={columns} data={policies} updateMyData={updateMyData}/>
             </div>
           </main>
         </div>

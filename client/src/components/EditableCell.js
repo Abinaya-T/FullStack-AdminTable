@@ -1,15 +1,5 @@
 import React from "react"
-import { useMutation, gql } from '@apollo/client';
 
-const UPDATE_POLICY = gql`
-mutation UpdatePolicy($policyNumber: String, $insuranceType: String, $provider: String) {
-  updatePolicy(PolicyNumber: $policyNumber, InsuranceType: $insuranceType, Provider: $provider) {
-    policyNumber
-    insuranceType
-    provider
-  }
-}
-`;
 
 const EditableCell = ({
   value: initialValue,
@@ -20,6 +10,7 @@ const EditableCell = ({
   
   const [value, setValue] = React.useState(initialValue)
   const onChange = e => {
+    console.log(e.target.value)
     setValue(e.target.value)
   }
   
@@ -27,6 +18,7 @@ const EditableCell = ({
     updateMyData(index, id, value)
   }
   
+
   React.useEffect(() => {
     setValue(initialValue)
   }, [initialValue])
