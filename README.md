@@ -19,16 +19,42 @@ The [frontend](./frontend) part would communicate with the [backend](./backend) 
 
 ## How to setup
 
-#### Run the app in dev mode
+#### Client - To Start the app
+
+cd client/
+
+##### To install dependencies
+
+```sh
+npm install
+```
 
 ```sh
 npm run start
 ```
 
-#### To test the application
+##### To test the application
 
 ```sh
 npm test
+```
+
+#### Server - To Start the app
+
+#### To install dependencies
+
+```sh
+yarn add
+```
+
+```sh
+yarn dev
+```
+
+#### To test the application
+
+```sh
+yarn test
 ```
 
 ## Built with
@@ -36,10 +62,24 @@ npm test
 This project is built using
 
 - `Apollo GraphQL server`
-- `React.js` for components, styled using `TailwindCSS`
+- `React.js` for components, `react-table` to render Table component , styled using `TailwindCSS`
 - `Apollo Client` 
 - `Prisma` as ORM and `SQLite` to persist data. 
-- For Testing - `Apollo Sandbox`, IDE for testing GraphQL endpoints and testing libs such as `jest`, `react-testing-libraries`, `apollo/client/testing`
+-  For Testing - `Apollo Sandbox`- IDE for testing GraphQL endpoints and testing libs such as `jest`, `react-testing-libraries`, `apollo/client/testing`
+
+
+
+## Known Bugs
+
+- testing is not yet completed.
+
+## Areas of Improvement
+
+- Unit & Integration testing
+- Use Typescript instead of Javascript
+- User Authentication
+- Package the app using Docker
+
 
 ### Policy
 
@@ -69,16 +109,3 @@ InsuranceType can be of `Liability`, `Household`, `Health`
 ### PolicyStatus
 
 PolicyStatus can be of `Active`, `Pending`, `Cancelled` and `Dropped out`
-
-## Known Bugs
-
-- testing is not yet completed.
-- Update mutation is not implemented in Client side.
-
-## Areas of Improvement
-
-- Unit & Integration testing
-- Use Typescript instead of Javascript
-- User Authentication
-- Package the app using Docker
-
