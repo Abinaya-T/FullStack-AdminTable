@@ -59,6 +59,16 @@ yarn dev
 yarn test
 ```
 
+#### To view Apollo Sandbox
+
+Open Browser -> http://localhost:4000/ (If server is running on Port 4000)
+
+#### To view Prisma Studio
+
+```sh
+yarn prisma studio
+```
+
 ## Built with
 
 This project is built using
