@@ -1,8 +1,15 @@
 # Feather - Fullstack Engineer code challenge
 
+## Problem Statement
+
 In this code challenge you'll need to create a simple admin panel from scratch. It would need to have a single table view to list insurance policies showcasing all the various field they may have.
 
 The [frontend](./frontend) part would communicate with the [backend](./backend) through a GraphQL API. You need to implement both.
+
+## My thoughts about this project
+
+I really enjoyed working on this project. The technologies(Apollo Graphql, Prisma) used here are entirely new to me and learning and implementing it step-by-step from scratch within the time frame was challenging and quite interesting. This project is a good start to learn some of the tech stacks used in Feather.
+
 
 ## Tasks - Checklist
 
@@ -46,7 +53,7 @@ cd server/
 #### To install dependencies
 
 ```sh
-yarn add
+yarn install
 ```
 
 ```sh
