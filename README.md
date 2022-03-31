@@ -4,35 +4,94 @@ In this code challenge you'll need to create a simple admin panel from scratch. 
 
 The [frontend](./frontend) part would communicate with the [backend](./backend) through a GraphQL API. You need to implement both.
 
-We've generated some boilerplate for you to get started.
+## Tasks - Checklist
 
-## What we'll be looking at
+- [x] On the [backend](./backend), change the GraphQL schema to reflect the [Data structure](#Data-structure)
+- [x] On the [frontend](./frontend), fetch the data returned by the GraphQL endpoint with the help of the [Apollo client](https://www.apollographql.com)
+- [x] On the [frontend](./frontend), display all the data returned by the endpoint in a table with the help of [tailwindcss](https://tailwindcss.com)
+   - [x] At least several fields should be editable in place
+   - [x] The table should have pagination and sorting on each of the columns
+   - [x] (Bonus) Add a text search input
+   - [x] (Bonus) Let the admin filter policies by insurance type or other fields
+- [ ] (Bonus) Package the app with Docker
+- [ ] (Bonus) Authenticate admins using login/password
+- [ ] (Bonus) Create more screens (e.g. customer profile, policy page…)
 
-- How you write idiomatic code.
-- How you deal with UI/UX.
-- How you navigate the requirements.
-- How you test & write testable code.
-- How you package the code.
-- How you deal with the security concerns.
-- How you communicate with your fellow programmers.
+## How to setup
 
-## Tasks
+#### Client - To Start the app
 
-1. On the [backend](./backend), change the GraphQL schema to reflect the [Data structure](#Data-structure)
-2. On the [frontend](./frontend), fetch the data returned by the GraphQL endpoint with the help of the [Apollo client](https://www.apollographql.com)
-3. On the [frontend](./frontend), display all the data returned by the endpoint in a table with the help of [tailwindcss](https://tailwindcss.com)
-   - At least several fields should be editable in place
-   - The table should have pagination and sorting on each of the columns
-   - (Bonus) Add a text search input
-   - (Bonus) Let the admin filter policies by insurance type or other fields
-4. (Bonus) Package the app with Docker
-5. (Bonus) Authenticate admins using login/password
-6. (Bonus) Create more screens (e.g. customer profile, policy page…)
+cd client/
 
-## Data structure
+##### To install dependencies
 
-To make it all work, you have to define a [GraphQL schema first](https://www.apollographql.com/docs/apollo-server/schema/schema/). No need to back it with a real database, however this would make sense to demonstrate the "edit" function.
-Each policy should have at least the following fields:
+```sh
+npm install
+```
+
+```sh
+npm run start
+```
+
+##### To test the application
+
+```sh
+npm test
+```
+
+#### Server - To Start the app
+
+cd server/
+
+#### To install dependencies
+
+```sh
+yarn add
+```
+
+```sh
+yarn dev
+```
+
+#### To test the application
+
+```sh
+yarn test
+```
+
+#### To view Apollo Sandbox
+
+Open Browser -> http://localhost:4000/ (If server is running on Port 4000)
+
+#### To view Prisma Studio
+
+```sh
+yarn prisma studio
+```
+
+## Built with
+
+This project is built using
+
+- `Apollo GraphQL server`
+- `React.js` for components, `react-table` to render Table component , styled using `TailwindCSS`
+- `Apollo Client` 
+- `Prisma` as ORM and `SQLite` to persist data. 
+-  For Testing - `Apollo Sandbox`- IDE for testing GraphQL endpoints and testing libs such as `jest`, `react-testing-libraries`, `apollo/client/testing`
+
+
+
+## Known Bugs
+
+- testing is not yet completed.
+
+## Areas of Improvement
+
+- Unit & Integration testing
+- Use Typescript instead of Javascript
+- User Authentication
+- Package the app using Docker
+
 
 ### Policy
 

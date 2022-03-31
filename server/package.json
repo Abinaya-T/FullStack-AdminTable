@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "description": "A simple admin panel backend",
+  "main": "src/index.js",
+  "license": "no license",
+  "private": true,
+  "dependencies": {
+    "@prisma/client": "^3.11.0",
+    "apollo-server": "^3.2.0",
+    "graphql": "^15.5.1",
+    "graphql-iso-date": "^3.6.1",
+    "nodemon": "^2.0.12"
+  },
+  "scripts": {
+    "dev": "nodemon",
+    "test": "jest --watchAll"
+  },
+  "devDependencies": {
+    "apollo-server-testing": "^2.25.3",
+    "jest": "^27.5.1",
+    "prisma": "^3.11.0"
+  }
+}
