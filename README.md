@@ -9,7 +9,7 @@ The [frontend](./frontend) part would communicate with the [backend](./backend) 
 - [x] On the [backend](./backend), change the GraphQL schema to reflect the [Data structure](#Data-structure)
 - [x] On the [frontend](./frontend), fetch the data returned by the GraphQL endpoint with the help of the [Apollo client](https://www.apollographql.com)
 - [x] On the [frontend](./frontend), display all the data returned by the endpoint in a table with the help of [tailwindcss](https://tailwindcss.com)
-   - [x] At least several fields should be editable in place
+   - [x] At least several fields should be editable in place. `InsuranceType` and `Provider` are editable.
    - [x] The table should have pagination and sorting on each of the columns
    - [x] (Bonus) Add a text search input
    - [x] (Bonus) Let the admin filter policies by insurance type or other fields
@@ -83,11 +83,12 @@ This project is built using
 
 ## Known Bugs
 
-- testing is not yet completed.
+- Update Field Validation not done. 
+- Apollo Server Tests
 
 ## Areas of Improvement
 
-- Unit & Integration testing
+- Improve Unit & Integration testing code coverage
 - Use Typescript instead of Javascript
 - User Authentication
 - Package the app using Docker
