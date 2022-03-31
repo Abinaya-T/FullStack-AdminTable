@@ -41,6 +41,8 @@ npm test
 
 #### Server - To Start the app
 
+cd server/
+
 #### To install dependencies
 
 ```sh
