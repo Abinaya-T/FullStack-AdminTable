@@ -1,4 +1,4 @@
-# Feather - Fullstack Engineer code challenge
+#  Admin table using react and graphql API
 
 ## Problem Statement
 
