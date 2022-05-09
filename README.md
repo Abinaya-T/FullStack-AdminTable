@@ -4,7 +4,7 @@
 
 A simple admin panel that has a single table view to list insurance policies showcasing all the various field they may have.
 
-The [frontend](./frontend) communicates with the [backend](./backend) through a GraphQL API. Data is persisted using Prisma.
+The [frontend](./client) communicates with the [backend](./server) through a GraphQL API. Data is persisted using Prisma.
 
 
 ## How to setup
