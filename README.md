@@ -2,27 +2,10 @@
 
 ## Problem Statement
 
-In this code challenge you'll need to create a simple admin panel from scratch. It would need to have a single table view to list insurance policies showcasing all the various field they may have.
+A simple admin panel that has a single table view to list insurance policies showcasing all the various field they may have.
 
-The [frontend](./frontend) part would communicate with the [backend](./backend) through a GraphQL API. You need to implement both.
+The [frontend](./frontend) communicates with the [backend](./backend) through a GraphQL API. Data is persisted using Prisma.
 
-## My thoughts about this project
-
-I really enjoyed working on this project. The technologies(Apollo Graphql, Prisma) used here are entirely new to me and learning and implementing it step-by-step from scratch within the time frame was challenging and quite interesting. This project is a good start to learn some of the tech stacks used in Feather.
-
-
-## Tasks - Checklist
-
-- [x] On the [backend](./backend), change the GraphQL schema to reflect the [Data structure](#Data-structure)
-- [x] On the [frontend](./frontend), fetch the data returned by the GraphQL endpoint with the help of the [Apollo client](https://www.apollographql.com)
-- [x] On the [frontend](./frontend), display all the data returned by the endpoint in a table with the help of [tailwindcss](https://tailwindcss.com)
-   - [x] At least several fields should be editable in place. `InsuranceType` and `Provider` are editable.
-   - [x] The table should have pagination and sorting on each of the columns
-   - [x] (Bonus) Add a text search input
-   - [x] (Bonus) Let the admin filter policies by insurance type or other fields
-- [ ] (Bonus) Package the app with Docker
-- [ ] (Bonus) Authenticate admins using login/password
-- [ ] (Bonus) Create more screens (e.g. customer profile, policy page…)
 
 ## How to setup
 
@@ -96,7 +79,6 @@ This project is built using
 ## Areas of Improvement
 
 - Improve Unit & Integration testing code coverage
-- Use Typescript instead of Javascript
 - User Authentication
 - Package the app using Docker
 
