@@ -6,6 +6,7 @@ A simple admin panel that has a single table view to list insurance policies sho
 
 The [frontend](./client) communicates with the [backend](./server) through a GraphQL API. Data is persisted using Prisma.
 
+<img width="956" alt="Admin table" src="https://user-images.githubusercontent.com/16041761/167912084-d513421e-da1f-4602-9cff-08210ca3630d.png">
 
 ## How to setup
 
@@ -80,6 +81,7 @@ This project is built using
 
 - Improve Unit & Integration testing code coverage
 - User Authentication
+- Pagination, sorting, filtering can be done in backend
 - Package the app using Docker
 
 
